@@ -4,21 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuaGuard</title>
-    <link href="/css/output.css" rel="stylesheet">
+    <link href="css/output.css" rel="stylesheet">
     <script>
-        // Block dev tools and right-click to protect client-side code
+        // Anti-inspect: Block dev tools and right-click
         window.addEventListener('contextmenu', (e) => e.preventDefault());
         window.addEventListener('keydown', (e) => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
                 window.location.href = 'about:blank';
             }
         });
-        // Check if dev tools are open by detecting window size changes
         setInterval(() => {
             if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
                 window.location.href = 'about:blank';
             }
         }, 1000);
+
+        // Mock whitelist check (client-side for demo)
+        function checkWhitelist() {
+            const key = document.getElementById('whitelist-key').value;
+            const validKeys = ['demo-key-123', 'test-key-456']; // Mock keys; use a server in production
+            if (validKeys.includes(key)) {
+                document.getElementById('whitelist-status').textContent = 'Access granted! Paste your script below.';
+                document.getElementById('script-input').style.display = 'block';
+            } else {
+                document.getElementById('whitelist-status').textContent = 'Invalid key. Join our Discord for a free key!';
+            }
+        }
+
+        // Simple client-side Lua obfuscation (basic demo)
+        function obfuscateScript() {
+            const script = document.getElementById('script-text').value;
+            let obfuscated = '';
+            for (let i = 0; i < script.length; i++) {
+                obfuscated += String.fromCharCode(script.charCodeAt(i) + Math.floor(Math.random() * 10) + 1);
+            }
+            document.getElementById('obfuscated-output').textContent = obfuscated;
+        }
     </script>
 </head>
 <body class="bg-gray-900 text-white">
@@ -28,7 +49,7 @@
             <div class="space-x-4">
                 <a href="#home" class="hover:text-blue-400">Home</a>
                 <a href="#features" class="hover:text-blue-400">Features</a>
-                <a href="#docs" class="hover:text-blue-400">Docs</a>
+                <a href="#tool" class="hover:text-blue-400">Tool</a>
                 <a href="#contact" class="hover:text-blue-400">Contact</a>
             </div>
         </nav>
@@ -37,43 +58,52 @@
     <main class="max-w-6xl mx-auto py-8">
         <section id="home" class="text-center py-16">
             <h2 class="text-4xl font-bold mb-4">Free Lua Script Protection</h2>
-            <p class="text-lg mb-6">Keep your Lua scripts safe with our free whitelist and obfuscation tools!</p>
-            <a href="#get-started" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get Started</a>
+            <p class="text-lg mb-6">Keep your scripts safe with our free obfuscation and whitelist tool!</p>
+            <a href="#tool" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Try It Now</a>
         </section>
 
         <section id="features" class="py-16">
             <h2 class="text-3xl font-bold text-center mb-8">What We Offer</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Discord Whitelist</h3>
-                    <p>Manage access with Discord roles, super simple and secure.</p>
+                    <h3 class="text-xl font-semibold mb-2">Whitelist System</h3>
+                    <p>Get a free key via Discord to access our tools.</p>
                 </div>
                 <div class="bg-gray-800 p-6 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Script Obfuscation</h3>
-                    <p>Scramble your Lua code to keep it hidden from others.</p>
+                    <p>Scramble your Lua code to keep it safe.</p>
                 </div>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Secure API</h3>
-                    <p>Lock down access with API keys, IP checks, and HWID bans.</p>
+                <div class=" Dumas class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Secure & Free</h3>
+                    <p>Protect your scripts at no cost, forever.</p>
                 </div>
             </div>
         </section>
 
-        <section id="docs" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-8">How to Use</h2>
-            <p class="text-center mb-4">Join our Discord, get a free key, and start protecting your scripts today!</p>
-            <a href="#contact" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto w-48">Join Discord</a>
+        <section id="tool" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Protect Your Script</h2>
+            <div class="max-w-md mx-auto">
+                <input id="whitelist-key" type="text" placeholder="Enter your whitelist key" class="w-full p-2 mb-4 bg-gray-700 text-white rounded">
+                <button onclick="checkWhitelist()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Check Key</button>
+                <p id="whitelist-status" class="text-center mt-4"></p>
+                <div id="script-input" style="display: none;">
+                    <textarea id="script-text" placeholder="Paste your Lua script here" class="w-full p-2 mb-4 bg-gray-700 text-white rounded h-32"></textarea>
+                    <button onclick="obfuscateScript()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Obfuscate</button>
+                    <p class="mt-4">Obfuscated Script:</p>
+                    <pre id="obfuscated-output" class="bg-gray-700 p-4 rounded"></pre>
+                </div>
+            </div>
         </section>
 
         <section id="contact" class="py-16 text-center">
-            <h2 class="text-3xl font-bold mb-8">Need Help?</h2>
-            <p class="mb-4">Join our Discord community for support and updates.</p>
+            <h2 class="text-3xl font-bold mb-8">Get a Free Key</h2>
+            <p class="mb-4">Join our Discord to grab a free whitelist key and get support!</p>
             <a href="https://discord.com/invite/yourdiscord" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join Discord</a>
         </section>
     </main>
 
     <footer class="bg-gray-800 p-4 text-center">
-        <p>© 2025 LuaGuard. Free for all, always.</p>
+        <p>© 2025 LuaGuard. Free for everyone!</p>
     </footer>
 </body>
 </html>
