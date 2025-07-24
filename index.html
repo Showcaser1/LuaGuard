@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuaGuard</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <script>
+        // Block dev tools and right-click to protect client-side code
+        window.addEventListener('contextmenu', (e) => e.preventDefault());
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
+                window.location.href = 'about:blank';
+            }
+        });
+        // Check if dev tools are open by detecting window size changes
+        setInterval(() => {
+            if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+                window.location.href = 'about:blank';
+            }
+        }, 1000);
+    </script>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 p-4">
+        <nav class="flex justify-between items-center max-w-6xl mx-auto">
+            <h1 class="text-2xl font-bold">LuaGuard</h1>
+            <div class="space-x-4">
+                <a href="#home" class="hover:text-blue-400">Home</a>
+                <a href="#features" class="hover:text-blue-400">Features</a>
+                <a href="#docs" class="hover:text-blue-400">Docs</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto py-8">
+        <section id="home" class="text-center py-16">
+            <h2 class="text-4xl font-bold mb-4">Free Lua Script Protection</h2>
+            <p class="text-lg mb-6">Keep your Lua scripts safe with our free whitelist and obfuscation tools!</p>
+            <a href="#get-started" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get Started</a>
+        </section>
+
+        <section id="features" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8">What We Offer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Discord Whitelist</h3>
+                    <p>Manage access with Discord roles, super simple and secure.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Script Obfuscation</h3>
+                    <p>Scramble your Lua code to keep it hidden from others.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Secure API</h3>
+                    <p>Lock down access with API keys, IP checks, and HWID bans.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8">How to Use</h2>
+            <p class="text-center mb-4">Join our Discord, get a free key, and start protecting your scripts today!</p>
+            <a href="#contact" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto w-48">Join Discord</a>
+        </section>
+
+        <section id="contact" class="py-16 text-center">
+            <h2 class="text-3xl font-bold mb-8">Need Help?</h2>
+            <p class="mb-4">Join our Discord community for support and updates.</p>
+            <a href="https://discord.com/invite/yourdiscord" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join Discord</a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 p-4 text-center">
+        <p>© 2025 LuaGuard. Free for all, always.</p>
+    </footer>
+</body>
+</html>
