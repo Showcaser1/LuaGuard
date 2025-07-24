@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuaGuard</title>
-    <link href="css/output.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <script>
         // Anti-inspect: Block dev tools and right-click
         window.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -22,7 +22,7 @@
         // Mock whitelist check (client-side for demo)
         function checkWhitelist() {
             const key = document.getElementById('whitelist-key').value;
-            const validKeys = ['demo-key-123', 'test-key-456']; // Mock keys; use a server in production
+            const validKeys = ['demo-key-123', 'test-key-456']; // Mock keys
             if (validKeys.includes(key)) {
                 document.getElementById('whitelist-status').textContent = 'Access granted! Paste your script below.';
                 document.getElementById('script-input').style.display = 'block';
@@ -31,7 +31,7 @@
             }
         }
 
-        // Simple client-side Lua obfuscation (basic demo)
+        // Client-side Lua obfuscation
         function obfuscateScript() {
             const script = document.getElementById('script-text').value;
             let obfuscated = '';
@@ -42,67 +42,67 @@
         }
     </script>
 </head>
-<body class="bg-gray-900 text-white">
-    <header class="bg-gray-800 p-4">
-        <nav class="flex justify-between items-center max-w-6xl mx-auto">
-            <h1 class="text-2xl font-bold">LuaGuard</h1>
-            <div class="space-x-4">
-                <a href="#home" class="hover:text-blue-400">Home</a>
-                <a href="#features" class="hover:text-blue-400">Features</a>
-                <a href="#tool" class="hover:text-blue-400">Tool</a>
-                <a href="#contact" class="hover:text-blue-400">Contact</a>
+<body>
+    <header>
+        <nav>
+            <h1>LuaGuard</h1>
+            <div>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#tool">Tool</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto py-8">
-        <section id="home" class="text-center py-16">
-            <h2 class="text-4xl font-bold mb-4">Free Lua Script Protection</h2>
-            <p class="text-lg mb-6">Keep your scripts safe with our free obfuscation and whitelist tool!</p>
-            <a href="#tool" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Try It Now</a>
+    <main>
+        <section id="home">
+            <h2>Free Lua Script Protection</h2>
+            <p>Keep your scripts safe with our free obfuscation and whitelist tool!</p>
+            <a href="#tool" class="button">Try It Now</a>
         </section>
 
-        <section id="features" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-8">What We Offer</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Whitelist System</h3>
+        <section id="features">
+            <h2>What We Offer</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Whitelist System</h3>
                     <p>Get a free key via Discord to access our tools.</p>
                 </div>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Script Obfuscation</h3>
+                <div class="card">
+                    <h3>Script Obfuscation</h3>
                     <p>Scramble your Lua code to keep it safe.</p>
                 </div>
-                <div class=" Dumas class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Secure & Free</h3>
+                <div class="card">
+                    <h3>Secure & Free</h3>
                     <p>Protect your scripts at no cost, forever.</p>
                 </div>
             </div>
         </section>
 
-        <section id="tool" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-8">Protect Your Script</h2>
-            <div class="max-w-md mx-auto">
-                <input id="whitelist-key" type="text" placeholder="Enter your whitelist key" class="w-full p-2 mb-4 bg-gray-700 text-white rounded">
-                <button onclick="checkWhitelist()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Check Key</button>
-                <p id="whitelist-status" class="text-center mt-4"></p>
+        <section id="tool">
+            <h2>Protect Your Script</h2>
+            <div class="tool-container">
+                <input id="whitelist-key" type="text" placeholder="Enter your whitelist key">
+                <button onclick="checkWhitelist()">Check Key</button>
+                <p id="whitelist-status"></p>
                 <div id="script-input" style="display: none;">
-                    <textarea id="script-text" placeholder="Paste your Lua script here" class="w-full p-2 mb-4 bg-gray-700 text-white rounded h-32"></textarea>
-                    <button onclick="obfuscateScript()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Obfuscate</button>
-                    <p class="mt-4">Obfuscated Script:</p>
-                    <pre id="obfuscated-output" class="bg-gray-700 p-4 rounded"></pre>
+                    <textarea id="script-text" placeholder="Paste your Lua script here"></textarea>
+                    <button onclick="obfuscateScript()">Obfuscate</button>
+                    <p>Obfuscated Script:</p>
+                    <pre id="obfuscated-output"></pre>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-16 text-center">
-            <h2 class="text-3xl font-bold mb-8">Get a Free Key</h2>
-            <p class="mb-4">Join our Discord to grab a free whitelist key and get support!</p>
-            <a href="https://discord.com/invite/yourdiscord" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join Discord</a>
+        <section id="contact">
+            <h2>Get a Free Key</h2>
+            <p>Join our Discord to grab a free whitelist key and get support!</p>
+            <a href="https://discord.com/invite/yourdiscord" class="button">Join Discord</a>
         </section>
     </main>
 
-    <footer class="bg-gray-800 p-4 text-center">
+    <footer>
         <p>© 2025 LuaGuard. Free for everyone!</p>
     </footer>
 </body>
